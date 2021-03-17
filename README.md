@@ -5,24 +5,21 @@ gcloud compute instances create hosts-server daemon-1 daemon-2 app
 
 gcloud compute ssh daemon-1
 
-sudo apt-get update
-sudo apt-get install -y default-jdk
-sudo apt-get install -y wget
+sudo apt-get update && sudo apt-get install -y default-jdk wget
 wget https://github.com/lionell/labs/raw/master/parcs/Daemon/Daemon.jar
 java -jar Daemon.jar&
 
 gcloud compute ssh hosts-server
-sudo apt-get update
-sudo apt-get install -y default-jdk
-sudo apt-get install -y wget
+sudo apt-get update && sudo apt-get install -y default-jdk wget
 wget https://github.com/lionell/labs/raw/master/parcs/HostsServer/TCPHostsServer.jar
 
 
 touch hosts.list
-echo 10.128.0.4 >> hosts.list
-echo 10.128.0.5 >> hosts.list
+echo 10.128.0.7 >> hosts.list
+echo 10.128.0.8 >> hosts.list
 java -jar TCPHostsServer.jar&
 
+gcloud compute ssh app
 sudo apt-get update && sudo apt-get install -y default-jdk git make
 git clone https://github.com/lionell/labs.git
 mv labs/parcs/Bluck . && rm -rf labs
