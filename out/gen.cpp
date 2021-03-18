@@ -5,7 +5,7 @@
 #include <cmath>
 using namespace std;
 
-const int N = 100;
+const int N = 400;
 
 int main()
 {
